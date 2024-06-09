@@ -7,13 +7,13 @@
         <meta name="author" content="" />
         <title>Dashboard</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="../public/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.html">Painel do Administrador</a>
+            <a class="navbar-brand ps-3" href="/">Painel</a>
             <!-- Sidebar-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- espaçamento -->
@@ -38,33 +38,54 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading"></div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="/">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
 
                             <div class="sb-sidenav-menu-heading">Recursos Humanos</div>
                             <a class="nav-link collapsed" href="tables.html" >
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-user-group"></i></div>
                                 Funcionários
+                            </a>
+                            <a class="nav-link collapsed" href="tables.html" >
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-user-group"></i></div>
+                                Cargos
                             </a>
 
                             <div class="sb-sidenav-menu-heading">Financeiro</div>
                             <a class="nav-link collapsed" href="#" >
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
                                 Contas a pagar
                             </a>
+                            <a class="nav-link collapsed" href="#" >
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                                Contas a receber
+                            </a>
+
 
                             <div class="sb-sidenav-menu-heading">Vendas</div>
                             <a class="nav-link collapsed" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                                Orçamento
+                            </a>
+                            <a class="nav-link collapsed" href="#">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                                Pedidos
+                            </a>
+                            <a class="nav-link collapsed" href="#">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-file-invoice"></i></div>
                                 Nota Fiscal
                             </a>
 
                             <div class="sb-sidenav-menu-heading">Estoque</div>
-                            <a class="nav-link collapsed" href="tables.html" >
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Estoque
+                            <a class="nav-link collapsed" href="tables" >
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
+                                Depósito
+                            </a>
+                            <a class="nav-link collapsed" href="" >
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
+                                Movimentação
                             </a>
 
                         </div>
@@ -87,10 +108,10 @@
         </div>
 
         <!--Scripts-->
-        <script src="js/scripts.js"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
-        <script src="js/datatables-simple-demo.js"></script>
+        <script src="../public/js/scripts.js"></script>
+        <script src="../assets/demo/chart-area-demo.js"></script>
+        <script src="../assets/demo/chart-bar-demo.js"></script>
+        <script src="../public/js/datatables-simple-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     </body>
 </html>

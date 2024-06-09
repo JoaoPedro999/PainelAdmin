@@ -43,18 +43,24 @@ app.use(express.static(__dirname + '/assets'));
 app.use(express.static(__dirname + '/img'));
 app.use(express.static(__dirname + '/demo'));
 app.use(express.static(__dirname + '/js'));
-app.use(express.static(__dirname + '/css')); 
+app.use(express.static(path.join(__dirname, '/css')));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('pages/index');
 }); 
 
 app.get('/login', (req, res) => {
-  res.render('login'); // Renders views/login.ejs
+  res.render('pages/login'); // Renders views/login.ejs
 });
+
+
+app.get('/tables', (req, res) => {
+  res.render('pages/tables'); // Renders views/login.ejs
+});
+
 // Rota para processar o formulário de login
 app.post('/login', (req, res) => {
   const { username, password, cpf } = req.body;
@@ -105,20 +111,11 @@ app.post('/login', (req, res) => {
   });
 });
 
-
 // Rota para fazer logout
 app.get('/logout', (req, res) => {
   req.session.destroy(() => {
     res.redirect('/');
     console.log('Desconectado')
-  });
-});
-
-// READ
-app.get('/tables', (req, res) => {
-  db.query('SELECT * FROM consultas', (err, result) => {
-    if (err) throw err;
-    res.render('tables', { consultas: result });
   });
 });
 
