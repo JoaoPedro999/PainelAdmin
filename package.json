@@ -19,5 +19,8 @@
     "path": "^0.12.7",
     "php": "^1.0.2",
     "phpmyadmin": "^0.0.1-security"
+  },
+  "devDependencies": {
+    "prisma": "^5.15.0"
   }
 }
