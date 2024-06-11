@@ -5,6 +5,10 @@ const mysql = require('mysql2');
 const ejs = require('ejs');
 const bodyParser = require('body-parser');
 const path = require('path');
+const { PrismaClient } = require('@prisma/client')
+
+const prisma = new PrismaClient()
+// use `prisma` in your application to read and write data in your DB
 
 const app = express();
 
