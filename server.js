@@ -7,7 +7,6 @@ const path = require('path');
 const { PrismaClient } = require('@prisma/client')
 
 const prisma = new PrismaClient()
-
 const app = express();
 
 app.use(bodyParser.json());
@@ -35,8 +34,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 // Rota para página inicial
-app.get('/', (req, res) => {
-  res.render('pages/index');
+app.get('/', async (req, res) => {
+  try {
+    const projects = await prisma.project_Primary_Registers.findMany();
+    res.render('pages/index', { projects });
+  } catch (err) {
+    console.error('Erro ao buscar registros:', err);
+    res.status(500).send('Erro ao buscar registros');
+  }
 });
 
 // Rota para dashboard
@@ -65,79 +70,6 @@ app.get('/logout', (req, res) => {
     res.redirect('/');
     console.log('Desconectado')
   });
-});
-
-// Rotas da API
-// Rota para listar todos os usuários
-app.get('/api/users', async (req, res) => {
-  try {
-    const users = await prisma.user.findMany();
-    res.json(users);
-  } catch (err) {
-    res.status(500).json({ error: 'Erro ao listar usuários' });
-  }
-});
-
-// Rota para obter um único usuário por ID
-app.get('/api/users/:id', async (req, res) => {
-  const { id } = req.params;
-  try {
-    const user = await prisma.user.findUnique({
-      where: { id: Number(id) }
-    });
-    if (user) {
-      res.json(user);
-    } else {
-      res.status(404).json({ error: 'Usuário não encontrado' });
-    }
-  } catch (err) {
-    res.status(500).json({ error: 'Erro ao obter usuário' });
-  }
-});
-
-// Rota para criar um novo usuário
-app.post('/api/users', async (req, res) => {
-  const { username, email, password } = req.body;
-  try {
-    const newUser = await prisma.user.create({
-      data: {
-        username,
-        email,
-        password
-      }
-    });
-    res.status(201).json(newUser);
-  } catch (err) {
-    res.status(500).json({ error: 'Erro ao criar usuário' });
-  }
-});
-
-// Rota para atualizar um usuário
-app.put('/api/users/:id', async (req, res) => {
-  const { id } = req.params;
-  const { username, email, password } = req.body;
-  try {
-    const updatedUser = await prisma.user.update({
-      where: { id: Number(id) },
-      data: { username, email, password }
-    });
-    res.json(updatedUser);
-  } catch (err) {
-    res.status(500).json({ error: 'Erro ao atualizar usuário' });
-  }
-});
-
-// Rota para deletar um usuário
-app.delete('/api/users/:id', async (req, res) => {
-  const { id } = req.params;
-  try {
-    await prisma.user.delete({
-      where: { id: Number(id) }
-    });
-    res.status(204).send();
-  } catch (err) {
-    res.status(500).json({ error: 'Erro ao deletar usuário' });
-  }
 });
 
 const PORT = process.env.PORT || 3000;
